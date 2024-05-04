@@ -29,3 +29,41 @@ class MyApp extends StatelessWidget {
   }
 }
 
+class ColorChangeWidget extends StatefulWidget {
+  @override
+  _ColorChangeWidgetState createState() => _ColorChangeWidgetState();
+}
+
+class _ColorChangeWidgetState extends State<ColorChangeWidget> {
+  // Lista de colores
+  List<Color> colors = [Colors.blue, Colors.red, Colors.orange, Colors.limeAccent];
+  
+  int colorIndex = 0;
+
+  // Método para cambiar el color al tocarlo.
+  void changeColor() {
+    setState(() {
+      // Incrementa el índice del color actual
+      colorIndex = (colorIndex + 1) % colors.length;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      
+      onTap: changeColor,
+      child: Container(
+        width: 200,
+        height: 200,
+        color: colors[colorIndex], // Color actual del contenedor
+        child: Center(
+          child: Text(
+            'Cambia de Color',
+            style: TextStyle(color: Colors.white),
+          ),
+        ),
+      ),
+    );
+  }
+}
